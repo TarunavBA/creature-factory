@@ -49,7 +49,7 @@ On the Express server side of the application, there are 4 endpoints used to cre
 ###### HTTP GET "/creatures"
 
 Receives a request from the front end (done with axios) and returns an array of creature objects, like so:
-
+```json
 [ { id : 12211212,
 name: “name”,
 head: “cat”,
@@ -62,6 +62,7 @@ head: “goldfish”,
 body: “bear”,
 legs: “tripod”
 likes: 3 } ]
+```
 
 ###### HTTP POST "/creatures"
 
@@ -79,13 +80,14 @@ Added scripts to root directory package.json:
 - "heroku-postbuild": "npm install --prefix client && npm install --prefix server && npm run build --prefix client"
 
 Added this chunk of code to index.js in server:
-
+```javascript
 if (process.env.NODE_ENV === 'production') {
 app.use(express.static('../client/build'));
 app.get('\*', (req, res) => {
 res.sendFile(path.join(\_\_dirname, '../client', 'build', 'index.html'));
 });
 }
+```
 
 - added const path = require("path"); to the top of index.js as well.
 
